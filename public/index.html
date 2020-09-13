@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head><!--Bootstrap framework included for using predefined classes -->
+        <!--this is a CSS that is being added here, we can add custom css in similar manner-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        
+
+        <!--Adding jquery for making use of javascript easier-->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"> </script>
+
+
+        <!--Adding firebase script which will take care of authentication-->
+        <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+
+
+        <link rel="shortcut icon" href="js/favicon.ico">
+
+        <!--link rel="stylesheet" href="css/style.css"-->
+         <style>  
+             .card{
+                width:450px;
+                margin:250px auto;
+             }
+            </style><!--Workaround for css file not getting linked with html using IDs-->
+
+    </head>
+
+    <body class="bg-dark"> <!--Making the background of the login page darkt-->
+    
+      <div class="card" > <!--Adding a card for the login screen-->
+          <div class="card-body">
+              <h1>
+                  Wallpaper Admin<!--Title-->
+              </h1>
+              <form id="LoginForm">
+                <div class="form-group">
+                    <label for="email"> Email ID </label>
+                    <input type="email" id="email" class="form-control"/>
+                    <label for="password"> Password </label>
+                    <input type="password" id="password" class="form-control"/>
+
+                </div>
+
+                <div class="form-group">
+                    <button id="btn-login"  type="button" class="btn btn-primary">Login</button>
+
+                </div>
+
+            </form>
+
+            </div>
+      </div>
+
+          <script src="js/app.js"  ></script>
+
+          <script>
+            firebase.auth().onAuthStateChanged(function(user){
+                if(user){localStorage.setItem("firstname",$("#email").val()); // To get the user name to the admin.html file
+                    window.location.href = "admin.html";
+                }
+            });
+        </script>
+
+    </body>
+</html>
